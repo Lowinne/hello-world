@@ -11,6 +11,8 @@ import {
   } from '@nestjs/common';
   import { AuthGuard } from './auth.guard';
   import { AuthService } from './auth.service';
+  import { RegisterDto } from './auth.registerDto';
+import { LoginDto } from './auth.loginDto';
   
   @Controller('auth')
   export class AuthController {
@@ -18,7 +20,7 @@ import {
   
     @HttpCode(HttpStatus.OK)
     @Post('login')
-    signIn(@Body() signInDto: Record<string, any>) {
+    signIn(@Body() signInDto: LoginDto) {
       return this.authService.signIn(signInDto.username, signInDto.password);
     }
   
@@ -27,5 +29,11 @@ import {
     getProfile(@Request() req) {
       return req.user;
     }
+    
+    @Post('register')
+    create(@Body() registerDto: RegisterDto) {
+    return 'This action adds a new user';
+    }
+
   }
   

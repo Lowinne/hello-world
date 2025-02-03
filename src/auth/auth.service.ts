@@ -23,4 +23,13 @@ export class AuthService {
       access_token: await this.jwtService.signAsync(payload),
     };
   }
+
+   async register(
+    username: string,
+    pass: string,
+    email: string,
+   ) {
+
+    this.usersService.addOne(username, pass, email);
+   }
 }
